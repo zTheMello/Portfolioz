@@ -1360,7 +1360,6 @@ textarea.form-input {
     .input-wrapper { grid-template-columns: 1fr 1fr; }
 
     .form-btn {
-        
         margin-left: auto;
     }
 }
