@@ -553,30 +553,30 @@
                 </section>
 
                 <section class="contact-form">
-                    <h3 class="h3 form-title">Contact Form</h3>
-
-                    <form action="#" class="form" data-form>
-                        <div class="input-wrapper">
-                            <input type="text" name="fullname" class="form-input" placeholder="Full name" required data-form-input>
-                            <input type="email" name="email" class="form-input" placeholder="Email Address" required data-form-input>
-                        </div>
-
-                        <textarea name="message" class="form-input" placeholder="Your Message" required data-form-input=""></textarea>
-
-                        <button class="form-btn" type="submit" disabled data-form-btn>
+                    <ul>
+                        <li class="lista-botão-contato">
+                        <div class="list-botao-contato">
+                            <button class="form-btn" type="button" onclick="window.open('https://wa.me/5581986380387', '_blank');">
                             <ion-icon name="paper-plane"></ion-icon>
-                            <span>Send Message</span>
-                        </button>
-                    </form>
+                            <span>WhatsApp</span>
+                            </button>
+
+                            <button class="form-btn" type="button" onclick="window.open('mailto:marcosandrevmello@gmail.com', '_blank');">
+                            <ion-icon name="mail"></ion-icon>
+                            <span>E-mail</span>
+                            </button>
+                        </div>
+                        </li>
+                    </ul>
                 </section>
             </article>
         </div>
     </main>
 
-    <script src="main.js"></script>
 
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    
     <script>
         const navbar = document.querySelector('.navbar');
 
@@ -587,5 +587,6 @@
 
     <!-- partial -->
   <script  src="./script.js"></script>
+
 </body>
 </html>

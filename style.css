@@ -406,11 +406,13 @@ article { display: none; }
     max-height: 500px; /* ajuste conforme quantidade de links */
     opacity: 1;
     display: flex; /* mostra a lista de links */
-    flex-direction: left;
+    overflow: row;
     align-items: flex-start;
     opacity: 1;
     visibility: visible;
 }
+
+
 
 /*ABOUT*/
 
@@ -1086,6 +1088,11 @@ textarea.form-input {
         .form-btn:disabled:hover { background: var(--border-gradient-onyx); }
             .form-btn:disabled:hover::before { background: var(--bg-gradient-jet); }
 
+    .list-botao-contato {
+    display: flex;          /* ativa o flexbox */
+    gap: 10px;              /* espaçamento entre os botões */
+    flex-wrap: wrap;        /* permite quebrar linha se não couber na tela */
+}
 
 /*MEDIA QUERIES*/
 
@@ -1353,7 +1360,7 @@ textarea.form-input {
     .input-wrapper { grid-template-columns: 1fr 1fr; }
 
     .form-btn {
-        width: max-content;
+        
         margin-left: auto;
     }
 }
