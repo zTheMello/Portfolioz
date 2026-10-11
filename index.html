@@ -90,16 +90,33 @@
         </aside>
 
         <div class="main-content">
-            <nav class="navbar retraida">
-                <button class="linha"><span class=""></span></button>
-                    <ul class="navbar-list">
-                        <li class="navbar-item"><button class="navbar-link active" data-nav-link>Sobre</button></li>
-                        <li class="navbar-item"><button class="navbar-link" data-nav-link>Formação e Experiencia</button></li>
-                        <li class="navbar-item"><button class="navbar-link" data-nav-link>Portfolio</button></li>
-                        <li class="navbar-item"><button class="navbar-link" data-nav-link>Contact</button></li>
-                     </ul>
-                </button>
-
+            <nav class="navbar" data-navbar>
+                <ul class="navbar-list">
+                    <li class="navbar-item">
+                        <button class="navbar-link nav-sobre active" data-nav-link>
+                            <ion-icon name="person-outline"></ion-icon>
+                            <span class="nav-label">Sobre</span>
+                        </button>
+                    </li>
+                    <li class="navbar-item">
+                        <button class="navbar-link nav-formacao" data-nav-link>
+                            <ion-icon name="school-outline"></ion-icon>
+                            <span class="nav-label">Formação e Experiencia</span>
+                        </button>
+                    </li>
+                    <li class="navbar-item">
+                        <button class="navbar-link nav-portfolio" data-nav-link>
+                            <ion-icon name="code-slash-outline"></ion-icon>
+                            <span class="nav-label">Portfolio</span>
+                        </button>
+                    </li>
+                    <li class="navbar-item">
+                        <button class="navbar-link nav-contact" data-nav-link>
+                            <ion-icon name="mail-outline"></ion-icon>
+                            <span class="nav-label">Contact</span>
+                        </button>
+                    </li>
+                </ul>
             </nav>
             
 
@@ -154,50 +171,27 @@
                         <li class="testimonials-item">
                             <div class="content-card" data-testimonials-item>
                                 <figure class="testimonials-avatar-box">
-                                    <img src="https://i.postimg.cc/brTrWNMQ/client-5737162.png" alt="avatar" data-testimonials-avatar width="60">
+                                    <img src="https://i.ibb.co/mV3K5SQm/image.png" alt="avatar" data-testimonials-avatar width="60">
                                 </figure>
 
-                                <h4 class="h4 testimonials-item-title" data-testimonials-title></h4>
+                                <h4 class="h4 testimonials-item-title" data-testimonials-title>EU TO EM ÊXTASE</h4>
 
                                 <div class="testimonials-text" data-testimonials-text>
-                                    <p></p>
+                                    <p>Ficou perfeito, melhor do que eu estava esperando.</p>
                                 </div>
                             </div>
                         </li>
                     </ul>
                 </section>
 
-                <div class="modal-container " data-modal-container>
-                    <div class="overlay " data-overlay></div>
 
-                    <section class="testimonials-modal">
-                        <button class="modal-close-btn" data-modal-close-btn><ion-icon name="close-outline"></ion-icon></button>
-
-                        <div class="modal-img-wrapper">
-                            <figure class="modal-avatar-box">
-                                <img src="https://i.postimg.cc/zGDHfn3G/avatar-1.png" alt="Daniel Lewis" width="80" data-modal-img>
-                            </figure>
-
-                            <img src="https://i.postimg.cc/mZ00RwX7/icon-quote.png" alt="quote icon">
-                        </div>
-
-                        <div class="modal-content">
-                            <h4 class="h3 modal-title" data-modal-title>Marcos Mello</h4>
-                            <time datetime="2025-09-27">27 Set, 2025</time>
-
-                            <div class="modal-text" data-modal-text>
-                                <p></p>
-                            </div>
-                        </div>
-                    </section>
-                </div>
 
                 <section class="clients">
                     <h3 class="h3 clients-title">Clients</h3>
 
                     <ul class="clients-list has-scrollbar">
                         <li class="clients-item">
-                            <a href="#"><img src="https://i.postimg.cc/brTrWNMQ/client-5737162.png" alt="logo"></a>
+                            <a href="https://www.instagram.com/nocadoces/"><img src="https://i.ibb.co/mV3K5SQm/image.png" alt="logo"></a>
                         </li>
 
                         <li class="clients-item">
@@ -573,17 +567,34 @@
         </div>
     </main>
 
+    <div class="modal-container " data-modal-container>
+                        <div class="overlay " data-overlay></div>
+    
+                        <section class="testimonials-modal">
+                            <button class="modal-close-btn" data-modal-close-btn><ion-icon name="close-outline"></ion-icon></button>
+    
+                            <div class="modal-img-wrapper">
+                                <figure class="modal-avatar-box">
+                                    <img src="https://i.ibb.co/mV3K5SQm/image.png" alt="Nocadoces" width="80" data-modal-img>
+                                </figure>
+    
+                                <img src="https://i.postimg.cc/mZ00RwX7/icon-quote.png" alt="quote icon">
+                            </div>
+    
+                            <div class="modal-content">
+                                <h4 class="h3 modal-title" data-modal-title>Nocadoces</h4>
+                                <time datetime="2026-10-10">10 out, 2026</time>
+    
+                                <div class="modal-text" data-modal-text>
+                                    <p>...</p>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+
 
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
-    
-    <script>
-        const navbar = document.querySelector('.navbar');
-
-        navbar.addEventListener('click', () => {
-            navbar.classList.toggle('open'); // abre ou fecha o menu
-        });
-    </script>
 
     <!-- partial -->
   <script  src="./script.js"></script>

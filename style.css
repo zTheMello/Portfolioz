@@ -357,62 +357,143 @@ article { display: none; }
 .navbar {
     position: fixed;
     bottom: 0;
-    right: 0; /* move para a direita */
+    right: 0;
     width: 100%;
+    height: 70px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     background: hsla(240, 1%, 17%, .75);
     backdrop-filter: blur(10px);
     border: 1px solid var(--jet);
     border-radius: 12px 12px 0 0;
     box-shadow: var(--shadow2);
     z-index: 5;
-    height: 70px;
-    cursor: pointer;
+}
+
+.navbar-list {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
 }
 
 .navbar-link {
+    display: flex;
+    align-items: center;
     color: var(--light-gray);
     font-size: var(--fs8);
-    padding: 20px 7px;
-    transition: color var(--transition1);
-    display: block;
+    padding: 20px 12px;
     text-align: left;
     text-decoration: none;
-    white-space: nowrap; /* impede quebra de texto */
+    white-space: nowrap;
+    border-radius: 6px;
+    transition: color var(--transition1), box-shadow .3s ease;
 }
 
-    .navbar-link:hover, .navbar-link:focus { color: var(--light-gray70); }
-    .navbar-link.active { color: var(--orange-yellow-crayola); }
-    .botaoluz:hover {
-    box-shadow: 0 0 15px 3px limegreen; /* luz neon */
-    border-color: limegreen; /* opcional, muda a borda */
+.navbar-link ion-icon {
+    font-size: 22px;
+    flex-shrink: 0;
+}
+
+.navbar-link:hover,
+.navbar-link:focus-visible {
+    color: var(--light-gray70);
+    box-shadow: 0 0 10px 3px limegreen; /* "luz verde" ao redor */
+}
+
+.navbar-link.active { color: var(--orange-yellow-crayola); }
+
+.botaoluz:hover {
+    box-shadow: 0 0 15px 3px limegreen;
+    border-color: limegreen;
     transition: box-shadow 0.3s ease, border-color 0.3s ease;
 }
-    .navbar-link:hover, 
-    .navbar-link:focus {
-    color: var(--light-gray70); /* mantém cor do texto */
-    box-shadow: 0 0 10px 3px limegreen; /* “luz verde” ao redor */
-    border-radius: 6px; /* opcional, deixa a luz arredondada */
-    transition: box-shadow 0.3s ease; /* anima suavemente */
-}
 
-.navbar.retraida .navbar-list {
-    display: none;
+/* Nome do botão: escondido, desliza para a direita quando o mouse passa no menu */
+.nav-label {
+    max-width: 0;
+    margin-left: 0;
     opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.3s ease;
+    overflow: hidden;
+    transform: translateX(-12px);
+    transition: max-width .5s ease, margin-left .5s ease, opacity .35s ease, transform .5s ease;
 }
 
-.navbar:hover .navbar-list {
-    max-height: 500px; /* ajuste conforme quantidade de links */
-    opacity: 1;
-    display: flex; /* mostra a lista de links */
-    overflow: row;
-    align-items: flex-start;
-    opacity: 1;
-    visibility: visible;
+@media (hover: hover) and (min-width: 580px) {
+
+    .navbar:hover .nav-label,
+    .navbar:has(.navbar-link:focus-visible) .nav-label {
+        max-width: 200px;
+        margin-left: 8px;
+        opacity: 1;
+        transform: translateX(0);
+    }
+
+    /* cada nome entra um pouco depois do anterior */
+    .navbar:hover .navbar-item:nth-child(1) .nav-label { transition-delay: .00s; }
+    .navbar:hover .navbar-item:nth-child(2) .nav-label { transition-delay: .06s; }
+    .navbar:hover .navbar-item:nth-child(3) .nav-label { transition-delay: .12s; }
+    .navbar:hover .navbar-item:nth-child(4) .nav-label { transition-delay: .18s; }
 }
 
+/* ===== Animação de cada botão, de acordo com o tema ===== */
 
+/* Sobre: a pessoa "acena" */
+.nav-sobre:hover ion-icon {
+    transform-origin: 70% 90%;
+    animation: acenar .9s ease-in-out;
+}
+
+/* Formação: o capelo "é jogado para cima" */
+.nav-formacao:hover ion-icon {
+    animation: jogar-capelo .8s ease-out;
+}
+
+/* Portfolio: o código "gira" em 3D */
+.nav-portfolio:hover ion-icon {
+    animation: girar-codigo .8s ease-in-out;
+}
+
+/* Contact: o e-mail "chega" balançando */
+.nav-contact:hover ion-icon {
+    animation: chegar-email .8s ease-in-out;
+}
+
+@keyframes acenar {
+    0%, 100% { transform: rotate(0); }
+    20% { transform: rotate(18deg); }
+    40% { transform: rotate(-14deg); }
+    60% { transform: rotate(18deg); }
+    80% { transform: rotate(-10deg); }
+}
+
+@keyframes jogar-capelo {
+    0% { transform: translateY(0) rotate(0); }
+    45% { transform: translateY(-12px) rotate(-20deg); }
+    70% { transform: translateY(-4px) rotate(10deg); }
+    100% { transform: translateY(0) rotate(0); }
+}
+
+@keyframes girar-codigo {
+    0% { transform: perspective(200px) rotateY(0) scale(1); }
+    50% { transform: perspective(200px) rotateY(180deg) scale(1.25); }
+    100% { transform: perspective(200px) rotateY(360deg) scale(1); }
+}
+
+@keyframes chegar-email {
+    0% { transform: translateY(0) rotate(0); }
+    20% { transform: translateY(-8px) rotate(-12deg); }
+    40% { transform: translateY(0) rotate(10deg); }
+    60% { transform: translateY(-4px) rotate(-6deg); }
+    80% { transform: translateY(0) rotate(4deg); }
+    100% { transform: translateY(0) rotate(0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .navbar-link ion-icon { animation: none !important; }
+    .nav-label { transition: none; }
+}
 
 /*ABOUT*/
 
@@ -1180,7 +1261,6 @@ textarea.form-input {
 
     .navbar { border-radius: 20px 20px 0 0; }
 
-    .navbar-list { gap: 20px; }
     .navbar-link { --fs8: 14px; }
 
     .about .article-title { margin-bottom: 20px; }
@@ -1397,10 +1477,7 @@ textarea.form-input {
         box-shadow: none;
     }
 
-    .navbar-list {
-        gap: 30px;
-        padding: 0 20px;
-    }
+    .navbar-list { padding: 0 10px; }
 
     .navbar-link { font-weight: var(--fw500); }
 
@@ -1503,4 +1580,154 @@ textarea.form-input {
     .social-list { justify-content: center; }
 
     .timeline-text { max-width: 700px; }
+}
+
+/* =====================================================
+   NEON FLUTUANTE
+   Fundo preto + luz neon verde, cards "flutuando"
+   ===================================================== */
+
+:root {
+    --neon-rgb: 57, 255, 20;
+    --neon: rgb(var(--neon-rgb));
+}
+
+body { background: #000; }
+
+/* Luzes neon que se movem lentamente no fundo */
+body::before,
+body::after {
+    content: "";
+    position: fixed;
+    inset: -25%;
+    z-index: -1;
+    pointer-events: none;
+    will-change: transform, opacity;
+}
+
+body::before {
+    background:
+        radial-gradient(38% 34% at 18% 28%, rgba(var(--neon-rgb), .30), transparent 70%),
+        radial-gradient(34% 38% at 82% 72%, rgba(var(--neon-rgb), .24), transparent 70%);
+    animation: neon-deriva 16s ease-in-out infinite alternate;
+}
+
+body::after {
+    background:
+        radial-gradient(30% 30% at 62% 12%, rgba(var(--neon-rgb), .18), transparent 70%),
+        radial-gradient(32% 28% at 28% 88%, rgba(var(--neon-rgb), .20), transparent 70%);
+    animation: neon-deriva 22s ease-in-out infinite alternate-reverse;
+}
+
+@keyframes neon-deriva {
+    0%   { transform: translate3d(-4%, -3%, 0) scale(1);    opacity: .75; }
+    50%  { transform: translate3d(3%, 4%, 0)   scale(1.12); opacity: 1; }
+    100% { transform: translate3d(5%, -2%, 0)  scale(1.05); opacity: .8; }
+}
+
+/* Cards flutuantes com brilho neon */
+.sidebar,
+article {
+    background: linear-gradient(145deg, hsla(0, 0%, 8%, .94), hsla(0, 0%, 3%, .97));
+    border: 1px solid rgba(var(--neon-rgb), .42);
+    box-shadow:
+        0 0 0 1px rgba(var(--neon-rgb), .08),
+        0 0 22px rgba(var(--neon-rgb), .34),
+        0 0 80px rgba(var(--neon-rgb), .16),
+        0 40px 70px -15px rgba(0, 0, 0, .9);
+    animation: flutuar 7s ease-in-out infinite;
+}
+
+article { animation-delay: -3s; }
+
+@keyframes flutuar {
+    0%, 100% { transform: translateY(0); }
+    50%      { transform: translateY(-8px); }
+}
+
+/* Navbar também brilha */
+.navbar {
+    border-color: rgba(var(--neon-rgb), .45);
+    background: hsla(0, 0%, 4%, .82);
+    box-shadow: 0 0 22px rgba(var(--neon-rgb), .30), 0 -6px 30px rgba(var(--neon-rgb), .14);
+}
+
+.navbar-link.active { text-shadow: 0 0 10px rgba(var(--neon-rgb), .75); }
+
+/* Detalhes internos */
+.article-title,
+.sidebar .name { text-shadow: 0 0 14px rgba(var(--neon-rgb), .45); }
+
+.avatar-box { box-shadow: 0 0 22px rgba(var(--neon-rgb), .45); }
+
+.content-card,
+.service-item,
+.blog-posts-item > a,
+.info-more-btn,
+.form-btn {
+    box-shadow: 0 0 0 1px rgba(var(--neon-rgb), .10), 0 0 14px rgba(var(--neon-rgb), .12);
+    transition: transform .3s ease, box-shadow .3s ease;
+}
+
+.content-card:hover,
+.service-item:hover,
+.blog-posts-item > a:hover,
+.info-more-btn:hover,
+.form-btn:not(:disabled):hover {
+    transform: translateY(-4px);
+    box-shadow: 0 0 0 1px rgba(var(--neon-rgb), .5), 0 0 24px rgba(var(--neon-rgb), .5);
+}
+
+.project-img { transition: box-shadow .3s ease; }
+.project-item > a:hover .project-img {
+    box-shadow: 0 0 0 1px rgba(var(--neon-rgb), .55), 0 0 26px rgba(var(--neon-rgb), .55);
+}
+
+/* Desktop: o conjunto menu + página flutua junto (assim o menu não "desgruda") */
+@media (min-width: 1024px) {
+    article { animation: none; }
+
+    .main-content { animation: flutuar 8s ease-in-out infinite -3s; }
+
+    .navbar {
+        box-shadow: 0 0 18px rgba(var(--neon-rgb), .30);
+    }
+}
+
+@media (min-width: 1250px) {
+    body::-webkit-scrollbar-track { background: #000; }
+
+    body::-webkit-scrollbar-thumb {
+        border-color: #000;
+        background: rgba(var(--neon-rgb), .35);
+    }
+
+    body::-webkit-scrollbar-thumb:hover { background: rgba(var(--neon-rgb), .6); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .sidebar, article, .main-content, body::before, body::after { animation: none !important; }
+}
+
+/* =====================================================
+   FOTOS REDONDAS (clientes, depoimentos e modal)
+   Funciona mesmo com foto quadrada ou retangular:
+   o recorte é feito pelo CSS (object-fit: cover)
+   ===================================================== */
+
+.clients-item img,
+.testimonials-avatar-box img,
+.modal-avatar-box img {
+    height: auto;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.clients-item img { border: 2px solid rgba(var(--neon-rgb), .5); }
+
+.testimonials-avatar-box,
+.modal-avatar-box {
+    border-radius: 50%;
+    overflow: hidden;
 }

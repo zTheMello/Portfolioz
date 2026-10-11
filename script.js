@@ -115,18 +115,21 @@ for(let i = 0; i < formInputs.length; i++) {
 const navigationLinks = document.querySelectorAll('[data-nav-link]');
 const pages = document.querySelectorAll('[data-page]');
 
-for(let i = 0; i < navigationLinks.length; i++) {
-    navigationLinks[i].addEventListener('click', function() {
-        
-        for(let i = 0; i < pages.length; i++) {
-            if(this.innerHTML.toLowerCase() == pages[i].dataset.page) {
-                pages[i].classList.add('active');
-                navigationLinks[i].classList.add('active');
-                window.scrollTo(0, 0);
-            } else {
-                pages[i].classList.remove('active');
-                navigationLinks[i]. classList.remove('active');
-            }
+for (let i = 0; i < navigationLinks.length; i++) {
+    navigationLinks[i].addEventListener('click', function () {
+
+        const target = this.querySelector('.nav-label').textContent.trim().toLowerCase();
+
+        // troca a página ativa
+        for (let p = 0; p < pages.length; p++) {
+            pages[p].classList.toggle('active', target == pages[p].dataset.page);
         }
+
+        // troca o link ativo
+        for (let n = 0; n < navigationLinks.length; n++) {
+            navigationLinks[n].classList.toggle('active', navigationLinks[n] === this);
+        }
+
+        window.scrollTo(0, 0);
     });
 }
